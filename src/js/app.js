@@ -126,8 +126,8 @@ function signOut(){
 const SCENARIOS={
   normal:{stock:65,delivery:8,orders:120,cancel:8,revenue:62,label:'Normal Operations'},
   opportunity:{stock:85,delivery:7,orders:185,cancel:5,revenue:88,label:'Peak Opportunity'},
-  anomaly:{stock:28,delivery:13,orders:95,cancel:22,revenue:47,label:'Anomaly Detected'},
-  delivery:{stock:70,delivery:32,orders:130,cancel:28,revenue:60,label:'Delivery Meltdown'},
+  anomaly:{stock:18,delivery:22,orders:60,cancel:35,revenue:35,label:'Anomaly Detected'},
+   delivery:{stock:12,delivery:35,orders:45,cancel:42,revenue:30,label:'Delivery Meltdown'},
   rushhour:{stock:55,delivery:12,orders:198,cancel:12,revenue:91,label:'Rush Hour Surge'},
 };
 function buildScenarioMenu(){
