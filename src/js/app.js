@@ -319,7 +319,6 @@ function openWarRoom(label){
 function closeWarRoom(){document.getElementById('warRoom').classList.remove('open');}
 function nudge(v,r,mn,mx){return Math.min(mx,Math.max(mn,v+(Math.random()-0.45)*r));}
 function liveUpdate(){
-  if(realtimeActive) return;
   liveData.stock=Math.round(nudge(liveData.stock,4,0,100));
   liveData.delivery=parseFloat(nudge(liveData.delivery,2,5,40).toFixed(1));
   liveData.orders=Math.round(nudge(liveData.orders,15,5,200));
