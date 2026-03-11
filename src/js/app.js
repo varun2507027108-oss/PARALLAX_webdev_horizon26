@@ -21,9 +21,7 @@ function toggleTheme(){
   document.getElementById('toggleThumb').style.transform=isDark?'translateX(0)':'translateX(20px)';
   document.getElementById('lightLabel').classList.toggle('active',isDark);
   document.getElementById('darkLabel').classList.toggle('active',!isDark);
-  if(delivChart)delivChart.update('none');
-  if(radarChart)radarChart.update('none');
-  if(stackedChart)stackedChart.update('none');
+  initCharts();
 }
 function togglePw(id,btn){const el=document.getElementById(id);el.type=el.type==='password'?'text':'password';btn.textContent=el.type==='password'?'👁':'👁';}
 function showError(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';}
