@@ -180,6 +180,7 @@ function initDashboard(){
   renderDashboard();initCharts();startClock();
   if(liveInterval)clearInterval(liveInterval);
   initSupabase();
+  liveInterval=setInterval(liveUpdate,3000);
 }
 function renderDashboard(){
   const d=liveData,score=calcStressScore(d);
