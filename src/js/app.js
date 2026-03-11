@@ -150,6 +150,7 @@ function quickLogin(role){
   }
 // ===== SIGN OUT =====
 function signOut(){
+  supabaseSignOut(); return;
   currentUser=null;currentRole=null;
   if(liveInterval)clearInterval(liveInterval);liveInterval=null;
   delivChart=null;radarChart=null;stackedChart=null;
