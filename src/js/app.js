@@ -1,3 +1,4 @@
+
 const userDB = {
   "owner@opspulse.com":{password:"owner123",phone:"9876543210",role:"owner",name:"Arjun Mehta",business:"SwiftBasket",city:"Mumbai",size:"Medium",zones:"5",orderTarget:"200",hours:"6am-midnight",category:"Grocery",warehouses:"3",avatar:"AM"},
   "manager@opspulse.com":{password:"ops2024",phone:"9123456780",role:"manager",name:"Priya Sharma",business:"SwiftBasket",city:"Mumbai",size:"Medium",zones:"5",orderTarget:"200",hours:"6am-midnight",category:"Grocery",warehouses:"3",avatar:"PS"}
@@ -318,6 +319,7 @@ function openWarRoom(label){
 function closeWarRoom(){document.getElementById('warRoom').classList.remove('open');}
 function nudge(v,r,mn,mx){return Math.min(mx,Math.max(mn,v+(Math.random()-0.45)*r));}
 function liveUpdate(){
+  if(realtimeActive) return;
   liveData.stock=Math.round(nudge(liveData.stock,4,0,100));
   liveData.delivery=parseFloat(nudge(liveData.delivery,2,5,40).toFixed(1));
   liveData.orders=Math.round(nudge(liveData.orders,15,5,200));
