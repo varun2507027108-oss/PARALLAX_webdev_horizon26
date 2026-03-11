@@ -179,7 +179,7 @@ function initDashboard(){
   alertLog=[];activeScenario='normal';
   renderDashboard();initCharts();startClock();
   if(liveInterval)clearInterval(liveInterval);
-  initSupabase();
+  try{ initSupabase(); }catch(e){ console.warn('Supabase skipped',e); }
   liveInterval=setInterval(liveUpdate,3000);
 }
 function renderDashboard(){
