@@ -348,11 +348,11 @@ function renderSpeedometer(id,value,max,label,stats){
 
 function liveUpdate(){
   function nudge(v,s){return Math.max(0,v+(Math.random()-0.5)*v*s);}
-  liveData.stock   =Math.min(100,nudge(liveData.stock,0.05));
-  liveData.delivery=Math.max(4,nudge(liveData.delivery,0.08));
-  liveData.orders  =Math.max(0,nudge(liveData.orders,0.06));
-  liveData.cancel  =Math.min(100,nudge(liveData.cancel,0.1));
-  liveData.revenue =Math.min(100,nudge(liveData.revenue,0.04));
+  liveData.stock   =Math.round(Math.min(100,nudge(liveData.stock,0.05)));
+  liveData.delivery=Math.round(Math.max(4,nudge(liveData.delivery,0.08)));
+  liveData.orders  =Math.round(Math.max(0,nudge(liveData.orders,0.06)));
+  liveData.cancel  =Math.round(Math.min(100,nudge(liveData.cancel,0.1)));
+  liveData.revenue =Math.round(Math.min(100,nudge(liveData.revenue,0.04)));
   delivHistory.push(liveData.delivery);
   if(delivHistory.length>14)delivHistory.shift();
   if(liveData.orders>orderPeak)orderPeak=liveData.orders;
