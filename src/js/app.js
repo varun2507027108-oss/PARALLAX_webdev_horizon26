@@ -253,7 +253,7 @@ function initDashboard(){
   if(liveInterval)clearInterval(liveInterval);
   try{initSupabase();}catch(e){console.warn('Supabase skipped',e);}
   liveInterval=setInterval(liveUpdate,3000);
-  setTimeout(loadReviews, 2000);
+  setTimeout(loadReviews, 4000);
 
   // Init map after short delay to let DOM settle
   if(currentRole==='manager')setTimeout(()=>initRiderMap(),400);
@@ -466,7 +466,8 @@ async function loadReviews(){
     .select('*')
     .order('created_at',{ascending:false})
     .limit(10);
-  if(error||!data||!data.length){renderReviews(getMockReviews());return;}
+  if(error){console.log('Review error:',error);renderReviews(getMockReviews());return;}
+  if(!data||!data.length){renderReviews(getMockReviews());return;}
   renderReviews(data.map(formatReview));
   sb.channel('reviews-live')
     .on('postgres_changes',
