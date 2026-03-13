@@ -378,7 +378,7 @@ function renderAlerts(){
   if(d.orders>160)items.push({badge:'ok',label:'OPP',msg:'High demand — '+Math.round(d.orders)+' orders/hr'});
   if(!items.length)items.push({badge:'ok',label:'OK',msg:'All systems nominal'});
   alertLog=items.map(i=>({...i,time:now}));
-  const html=alertLog.map(a=>'<div class="alert-row"><span class="ti-badge '+a.badge+'">'+a.label+'</span><span class="alert-msg">'+a.msg+'</span><span class="alert-time">'+a.time+'</span></div>').join('');
+  const html=alertLog.map(a=>'<div class="alert-row" style="display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)"><span class="ti-badge '+a.badge+'" style="flex-shrink:0;font-size:10px;padding:2px 8px;border-radius:3px;font-family:\'IBM Plex Mono\',monospace;font-weight:700">'+a.label+'</span><span style="flex:1;font-size:13px;color:var(--text-primary)">'+a.msg+'</span><span style="font-size:11px;color:var(--text-muted);font-family:\'IBM Plex Mono\',monospace;white-space:nowrap">'+a.time+'</span></div>').join('');
   ['alertTable','alertTableManager'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html||'<div style="padding:16px;color:var(--text-muted);font-size:13px">Waiting for events...</div>';});
 }
 
