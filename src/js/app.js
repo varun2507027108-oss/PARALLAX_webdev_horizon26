@@ -444,3 +444,14 @@ function updateCharts(){
   if(delivChart&&delivHistory.length){delivChart.data.datasets[0].data=[...delivHistory];delivChart.update('none');}
   if(radarChart){const v=liveData.cancel;radarChart.data.datasets[0].data=[v,v+3,v-2,v+1,v-1];radarChart.update('none');}
 }
+function openAlertModal(){
+  const body=document.getElementById('alertModalBody');
+  const history=[...alertLog,...alertLog,...alertLog];
+  body.innerHTML=history.length
+    ?history.map(a=>'<div style="display:flex;align-items:center;gap:10px;padding:12px 24px;border-bottom:1px solid var(--border)"><span class="ti-badge '+a.badge+'" style="flex-shrink:0">'+a.label+'</span><span style="flex:1;font-size:13px;color:var(--text-primary)">'+a.msg+'</span><span style="font-size:11px;color:var(--text-muted);font-family:\'IBM Plex Mono\',monospace">'+a.time+'</span></div>').join('')
+    :'<div style="padding:24px;color:var(--text-muted);text-align:center">No alerts yet</div>';
+  document.getElementById('alertModal').style.display='block';
+}
+function closeAlertModal(){
+  document.getElementById('alertModal').style.display='none';
+}
