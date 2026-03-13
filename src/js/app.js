@@ -253,7 +253,7 @@ function initDashboard(){
   if(liveInterval)clearInterval(liveInterval);
   try{initSupabase();}catch(e){console.warn('Supabase skipped',e);}
   liveInterval=setInterval(liveUpdate,3000);
-  loadReviews();
+  setTimeout(loadReviews, 2000);
 
   // Init map after short delay to let DOM settle
   if(currentRole==='manager')setTimeout(()=>initRiderMap(),400);
@@ -459,14 +459,43 @@ function closeAlertModal(){
 // ===== REVIEWS =====
 async function loadReviews(){
   if(currentRole!=='owner')return;
-  const mockReviews=[
+  if(!_supabase){renderReviews(getMockReviews());return;}
+  const {data,error}=await _supabase
+    .from('customer_reviews')
+    .select('*')
+    .order('created_at',{ascending:false})
+    .limit(10);
+  if(error||!data||!data.length){renderReviews(getMockReviews());return;}
+  renderReviews(data.map(formatReview));
+  _supabase.channel('reviews-live')
+    .on('postgres_changes',
+      {event:'INSERT',schema:'public',table:'customer_reviews'},
+      ()=>{
+        _supabase.from('customer_reviews').select('*')
+          .order('created_at',{ascending:false}).limit(10)
+          .then(({data})=>{if(data&&data.length)renderReviews(data.map(formatReview));});
+        showToast('New WhatsApp review received!');
+      }
+    ).subscribe();
+}
+
+function getMockReviews(){
+  return[
     {name:'Rahul M.',rating:5,msg:'Super fast delivery! Got my groceries in 8 minutes.',time:'10:42 AM'},
     {name:'Sneha K.',rating:4,msg:'Good service, packaging could be better.',time:'10:15 AM'},
     {name:'Amit T.',rating:5,msg:'Best quick commerce in Mumbai. Always on time!',time:'09:58 AM'},
     {name:'Priya D.',rating:3,msg:'Delivery was slightly late today but quality was good.',time:'09:30 AM'},
     {name:'Karan S.',rating:5,msg:'Amazing experience, will definitely order again.',time:'09:10 AM'},
   ];
-  renderReviews(mockReviews);
+}
+
+function formatReview(r){
+  return{
+    name:'User ...'+r.phone.slice(-4),
+    rating:r.rating,
+    msg:r.message,
+    time:new Date(r.created_at).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})
+  };
 }
 
 function renderReviews(reviews){
