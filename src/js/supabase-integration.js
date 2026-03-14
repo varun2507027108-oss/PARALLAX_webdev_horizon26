@@ -9,34 +9,24 @@ async function initSupabase(){
   window._supabase = _supabase;
   await loadLatestMetrics();
   startRealtimeListener();
-  if(typeof loadReviews === 'function') loadReviews(); 
 }
 
 async function loadLatestMetrics() {
   try {
-    const { data: { user } } = await _supabase.auth.getUser();
-    if (!user) return;
-
     const { data: profile } = await _supabase
       .from('user_profiles')
       .select('business_id, order_target')
-      .eq('user_id', user.id)
+      .eq('user_id', (await _supabase.auth.getUser()).data.user.id)
       .single();
-
     if (!profile) return;
-
     if (currentUser) currentUser.orderTarget = profile.order_target || 200;
-
     const { data, error } = await _supabase
       .from('latest_business_metrics')
       .select('stock, orders, revenue, delivery, cancel')
       .eq('business_id', profile.business_id)
       .single();
-
     if (error || !data) return;
-
     applyMetrics(data);
-
   } catch (err) {
     console.error('[OpsPulse] loadLatestMetrics error:', err.message);
   }
@@ -275,13 +265,13 @@ async function restoreSession() {
   const { data: { session } } = await _supabase.auth.getSession();
   if (!session) return;
   const { data: { user } } = await _supabase.auth.getUser();
-    if (!user) return;
-    const { data: profile } = await _supabase
-      .from('user_profiles')
-      .select('business_id, order_target')
-      .eq('user_id', user.id)
-      .single();
-  
+  if (!user) return;
+  const { data: profile } = await _supabase
+    .from('user_profiles')
+    .select('business_id, order_target')
+    .eq('user_id', user.id)
+    .single();
+
   if (!profile) return;
 
   currentUser = {
