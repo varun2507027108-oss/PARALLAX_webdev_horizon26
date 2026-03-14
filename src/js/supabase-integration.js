@@ -9,7 +9,7 @@ async function initSupabase(){
   window._supabase = _supabase;
   await loadLatestMetrics();
   startRealtimeListener();
-  if(typeof loadReviews === 'function') loadReviews(); // ← ADD THIS LINE
+  if(typeof loadReviews === 'function') loadReviews(); 
 }
 
 async function loadLatestMetrics() {
