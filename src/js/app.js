@@ -446,9 +446,36 @@ function openAlertModal(){
 function closeAlertModal(){
   document.getElementById('alertModal').style.display='none';
 }
+//review
 async function loadReviews(){
   if(currentRole!=='owner')return;
-  renderReviews(getMockReviews());
+  const sb=window._supabase||_supabase;
+  if(!sb){renderReviews(getMockReviews());return;}
+  const {data,error}=await sb
+    .from('customer_reviews')
+    .select('*')
+    .order('created_at',{ascending:false})
+    .limit(10);
+  if(error||!data||!data.length){renderReviews(getMockReviews());return;}
+  renderReviews(data.map(formatReview));
+  sb.channel('reviews-live')
+    .on('postgres_changes',
+      {event:'INSERT',schema:'public',table:'customer_reviews'},
+      ()=>{
+        sb.from('customer_reviews').select('*')
+          .order('created_at',{ascending:false}).limit(10)
+          .then(({data})=>{if(data&&data.length)renderReviews(data.map(formatReview));});
+        showToast('New WhatsApp review received!');
+      }
+    ).subscribe();
+}
+function formatReview(r){
+  return{
+    name:r.name||r.phone||'Anonymous',
+    rating:r.rating||5,
+    msg:r.message||'',
+    time:r.created_at?new Date(r.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):''
+  };
 }
 function getMockReviews(){
   return[
