@@ -246,8 +246,6 @@ function initDashboard(){
   if(liveInterval)clearInterval(liveInterval);
   try{initSupabase();}catch(e){console.warn('Supabase skipped',e);}
   liveInterval=setInterval(liveUpdate,3000);
-  if(currentRole==='owner')loadReviews();
-  // Init map after short delay to let DOM settle
   if(currentRole==='manager')setTimeout(()=>initRiderMap(),400);
 }
 
