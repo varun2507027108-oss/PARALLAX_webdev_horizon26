@@ -14,10 +14,13 @@ async function initSupabase(){
 
 async function loadLatestMetrics() {
   try {
+    const { data: { user } } = await _supabase.auth.getUser();
+    if (!user) return;
+
     const { data: profile } = await _supabase
       .from('user_profiles')
       .select('business_id, order_target')
-      .eq('user_id', (await _supabase.auth.getUser()).data.user.id)
+      .eq('user_id', user.id)
       .single();
 
     if (!profile) return;
