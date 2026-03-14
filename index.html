@@ -17,32 +17,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="src/css/main.css"/>
 <style>
-/* ===== WHATSAPP SETTINGS CARD ===== */
-.wa-settings-card .card-header{align-items:flex-start}
-.wa-settings-body{padding:0 20px 20px}
-.wa-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:900px){.wa-fields{grid-template-columns:1fr}}
-.wa-actions{display:flex;gap:10px;margin-bottom:14px}
-.wa-setup-hint{font-size:12px;color:var(--text-muted);background:var(--border);border-radius:4px;padding:10px 14px;line-height:1.6}
-.wa-setup-hint code{background:rgba(249,115,22,0.15);color:var(--orange);padding:1px 5px;border-radius:3px;font-family:'IBM Plex Mono',monospace}
-.wa-toggle-wrap{position:relative;display:inline-flex;align-items:center;cursor:pointer}
-.wa-toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
-.wa-toggle-slider{width:40px;height:22px;background:var(--border);border-radius:11px;transition:background .2s;display:inline-block;position:relative}
-.wa-toggle-slider::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--text-muted);transition:transform .2s,background .2s}
-.wa-toggle-wrap input:checked+.wa-toggle-slider{background:var(--orange)}
-.wa-toggle-wrap input:checked+.wa-toggle-slider::after{transform:translateX(18px);background:#fff}
-/* Demo WA toast */
-#demoWaToast{position:fixed;bottom:80px;right:24px;z-index:9999;background:#1e1b4b;border:1px solid #7c3aed;border-radius:8px;padding:14px 18px;max-width:340px;box-shadow:0 4px 24px rgba(124,58,237,0.3);font-family:'Plus Jakarta Sans',sans-serif;opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s;pointer-events:none}
-#demoWaToast.show{opacity:1;transform:translateY(0)}
-#demoWaToast .dwt-header{font-size:11px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:6px}
-#demoWaToast .dwt-body{font-size:13px;color:#e2e8f0;line-height:1.5}
-#demoWaToast .dwt-meta{font-size:11px;color:#a78bfa;margin-top:6px}
-/* Ticker animation */
-.ticker-new{animation:tickerSlideIn .4s ease forwards}
-@keyframes tickerSlideIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
-</style>
-</head>
-<body>
+
 
 <!-- ===== LOGIN ===== -->
 <div id="loginScreen" class="auth-screen" style="display:block">
