@@ -484,7 +484,7 @@ function renderReviews(reviews){
       <span style="font-size:13px;color:var(--blue);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">View all reviews →</span>
     </div>
 
-    <div id="reviewsModal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)" onclick="if(event.target===this)this.style.display='none'">
+    <div id="reviewsModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)" onclick="if(event.target===this)this.style.display='none'">
       <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(600px,90vw);max-height:80vh;overflow-y:auto;background:var(--card-bg);border-radius:8px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.4)">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card-bg)">
           <div>
