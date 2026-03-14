@@ -221,18 +221,6 @@ function initDashboard(){
   document.getElementById('ownerView').style.display=currentRole==='owner'?'block':'none';
   document.getElementById('managerView').style.display=currentRole==='manager'?'block':'none';
 
-  
-  }
-
-  // Inject rider map card into manager view
-  if(currentRole==='manager'){
-    if(document.getElementById('managerView')&&!document.getElementById('waSettingsInManager')){
-      const div=document.createElement('div');div.id='waSettingsInManager';
-      div.innerHTML=renderWaSettingsCard('Manager');
-      document.getElementById('managerView').appendChild(div);
-    }
-  }
-
   delivHistory=Array.from({length:14},()=>7+Math.random()*6);
   alertLog=[];activeScenario='normal';
   renderDashboard();initCharts();startClock();startSentimentFeed();
