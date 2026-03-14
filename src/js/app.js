@@ -492,8 +492,8 @@ function renderReviews(reviews){
   const avg=(reviews.reduce((s,r)=>s+r.rating,0)/reviews.length).toFixed(1);
   const stars=r=>'★'.repeat(r)+'☆'.repeat(5-r);
   container.innerHTML=
-    `<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--page-bg);cursor:pointer"
-      onclick="const b=document.getElementById('reviewsBody');const open=b.style.display==='block';b.style.display=open?'none':'block';document.getElementById('reviewsChevron').textContent=open?'▼':'▲'">
+    `<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;cursor:pointer"
+      onclick="document.getElementById('reviewsModal').style.display='block'">
       <div style="display:flex;align-items:center;gap:16px">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;color:var(--text-primary)">${avg}</span>
         <div>
@@ -501,21 +501,39 @@ function renderReviews(reviews){
           <div style="font-size:11px;color:var(--text-muted);margin-top:2px">${reviews.length} reviews</div>
         </div>
       </div>
-      <span id="reviewsChevron" style="font-size:13px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace">▼ Click to view</span>
+      <span style="font-size:13px;color:var(--blue);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">View all reviews →</span>
     </div>
-    <div id="reviewsBody" style="display:none;max-height:280px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">
-      ${reviews.map(r=>
-        `<div style="padding:16px 24px;border-bottom:1px solid var(--border)">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:30px;height:30px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">${r.name[0]}</div>
-              <span style="font-weight:600;font-size:13px;color:var(--text-primary)">${r.name}</span>
-            </div>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-faint)">${r.time}</span>
+
+    <div id="reviewsModal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)" onclick="if(event.target===this)this.style.display='none'">
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(600px,90vw);max-height:80vh;overflow-y:auto;background:var(--card-bg);border-radius:8px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.4)">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card-bg)">
+          <div>
+            <div style="font-weight:700;font-size:16px;font-family:'Playfair Display',serif">⭐ Customer Reviews</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">${reviews.length} reviews via WhatsApp</div>
           </div>
-          <div style="color:#f59e0b;font-size:13px;letter-spacing:1px;margin-bottom:4px">${stars(r.rating)}</div>
-          <div style="font-size:13px;color:var(--text-muted);line-height:1.5">${r.msg}</div>
-        </div>`
-      ).join('')}
+          <div style="display:flex;align-items:center;gap:16px">
+            <div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:var(--text-primary)">${avg}</span>
+              <span style="color:#f59e0b;font-size:16px;margin-left:8px">${stars(Math.round(avg))}</span>
+            </div>
+            <button class="btn-ghost" onclick="document.getElementById('reviewsModal').style.display='none'">✕ Close</button>
+          </div>
+        </div>
+        <div style="padding:8px 0">
+          ${reviews.map(r=>
+            `<div style="padding:16px 24px;border-bottom:1px solid var(--border)">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:30px;height:30px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">${r.name[0]}</div>
+                  <span style="font-weight:600;font-size:13px;color:var(--text-primary)">${r.name}</span>
+                </div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-faint)">${r.time}</span>
+              </div>
+              <div style="color:#f59e0b;font-size:13px;letter-spacing:1px;margin-bottom:4px">${stars(r.rating)}</div>
+              <div style="font-size:13px;color:var(--text-muted);line-height:1.5">${r.msg}</div>
+            </div>`
+          ).join('')}
+        </div>
+      </div>
     </div>`;
 }
