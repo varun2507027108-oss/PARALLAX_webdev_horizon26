@@ -284,3 +284,121 @@ select.form-input{appearance:none;cursor:pointer;padding-right:32px;background-i
 .ti-badge.ok   { background: rgba(22,163,74,0.15);  color: #16a34a; }
 .ti-badge.warn { background: rgba(217,119,6,0.15);  color: #d97706; }
 .ti-badge.crit { background: rgba(220,38,38,0.15);  color: #dc2626; }
+/* ==========================================================================
+   MOBILE RESPONSIVE — append to end of main.css
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+  /* AUTH — stack brand panel below form */
+  .auth-split {
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+  .auth-brand {
+    padding: 40px 24px 32px;
+    min-height: unset;
+  }
+  .auth-brand .brand-logo { font-size: 30px; }
+  .auth-brand .brand-trust { position: static; margin-top: 24px; }
+  .auth-form-panel { padding: 24px 16px; align-items: flex-start; }
+  .auth-card { padding: 28px 20px; }
+
+  /* TOP NAV */
+  .topnav { padding: 0 16px; gap: 0; }
+  .topnav-logo { font-size: 16px; }
+  .theme-toggle .toggle-label { display: none; }
+  .topnav-right { gap: 10px; }
+
+  /* BREADCRUMB */
+  .breadcrumb-bar { padding: 0 16px; font-size: 11px; }
+
+  /* MAIN SCROLL */
+  .main-scroll { padding: 16px; }
+
+  /* PAGE HEADER */
+  .page-header {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ph-title { font-size: 20px; }
+
+  /* STRESS SCORE */
+  .stress-body {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .stress-score { font-size: 48px; }
+  .sb-label { width: 70px; font-size: 11px; }
+
+  /* KPI ROW — 2 columns on mobile */
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .kpi-card .kpi-value { font-size: 24px; }
+
+  /* DASH GRIDS — all collapse to single column */
+  .dash-grid.two-col,
+  .dash-grid.two-col-m,
+  .dash-grid.equal {
+    grid-template-columns: 1fr;
+  }
+
+  /* SPEEDOMETERS */
+  .speedo-row { grid-template-columns: 1fr; gap: 16px; }
+  .speedo-svg { width: 160px; height: 116px; }
+
+  /* CARDS */
+  .card { padding: 16px; }
+  .card-header { flex-wrap: wrap; gap: 8px; }
+
+  /* ALERT TABLE */
+  .alert-table .atr {
+    grid-template-columns: 24px 1fr 70px;
+  }
+  .alert-ts { display: none; }
+
+  /* ACTION TABLE */
+  .action-table .at-header,
+  .action-table .at-row {
+    grid-template-columns: 50px 1fr 80px;
+  }
+
+  /* WAR ROOM */
+  .warroom-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .warroom-body { padding: 20px 16px; }
+  .wr-title { font-size: 24px; }
+
+  /* CRISIS BADGE */
+  .crisis-badge { bottom: 12px; right: 12px; padding: 10px 14px; }
+  .crisis-badge .cb-val { font-size: 22px; }
+
+  /* TOAST */
+  .toast { right: 12px; left: 12px; max-width: unset; }
+  #demoWaToast { right: 12px; left: 12px; max-width: unset; }
+
+  /* ROLE CARDS (signup) */
+  .role-cards { grid-template-columns: 1fr; }
+
+  /* FORM ROW */
+  .form-row { grid-template-columns: 1fr; }
+
+  /* RIDER MAP */
+  #riderMap { height: 240px !important; }
+
+  /* DEMO BOX quick login */
+  .quick-login-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+  /* Extra small phones */
+  .kpi-row { grid-template-columns: 1fr; }
+  .auth-card { padding: 20px 16px; }
+  .stress-score { font-size: 40px; }
+  .topnav-logo { font-size: 14px; }
+}
