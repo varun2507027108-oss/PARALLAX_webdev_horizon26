@@ -1,8 +1,4 @@
-/* ==========================================================================
-   OpsPulse â€” Main Stylesheet
-   Quick Commerce Business Health Dashboard
-   Horizon 1.0 Hackathon â€” Vidyavardhini's College of Engineering
-   ========================================================================== */
+
 
 :root{--page-bg:#F2EDE4;--card-bg:#FDFBF7;--navbar-bg:#1B2B4B;--navbar-text:#ffffff;--border:#D8D0C4;--text-primary:#1B2B4B;--text-muted:#6B7280;--text-faint:#9CA3AF;--orange:#f97316;--blue:#0073bb;--green:#16a34a;--red:#dc2626;--yellow:#d97706;--card-shadow:0 1px 3px rgba(27,43,75,0.08),0 1px 2px rgba(27,43,75,0.04);--breadcrumb-bg:#EAE4D8;--input-focus-ring:rgba(0,115,187,0.1)}
 [data-theme="dark"]{--page-bg:#0d1117;--card-bg:#161b22;--navbar-bg:#010409;--navbar-text:#e6edf3;--border:#30363d;--text-primary:#f0f6fc;--text-muted:#9da5b0;--text-faint:#6e7681;--orange:#f97316;--blue:#58a6ff;--green:#56d364;--red:#ff7b72;--yellow:#e3b341;--card-shadow:0 1px 4px rgba(0,0,0,0.5),0 2px 6px rgba(0,0,0,0.35);--breadcrumb-bg:#161b22;--input-focus-ring:rgba(56,139,253,0.2)}
