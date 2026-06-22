@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/25889420/README.1.md)
-# OpsPulse — Quick Commerce Intelligence Dashboard
+# OpsPulse — Quick Commerce Intelligence Dashboard (Runner Up GDG 2026)
 
 OpsPulse is a real-time health monitoring dashboard built specifically for the fast-paced world of quick commerce. Unlike conventional dashboards that simply display raw numbers, OpsPulse goes a step further by computing a live **Business Stress Score** — giving operators an instant sense of how close (or far) they are from an operational crisis.
 
